@@ -1,32 +1,39 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+ <v-app>
+  <v-container grid-list-xs>
+    <v-app-bar app color="dark" dark>
+      <v-toolbar-title></v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn to="/" text>home</v-btn>
+      <v-btn to="/products" text>Pájaros</v-btn>
+      <v-spacer></v-spacer>
+    </v-app-bar>
+    <v-main>
+      <router-view></router-view>
+    </v-main>    
+    <v-footer
+        absolute
+        class="font-weight-medium" color="indigo lighten-4">
+        <v-col class="text-center" cols="12">
+          {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        </v-col>
+      </v-footer>
+   </v-container>
+  </v-app> 
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
 
-#nav {
-  padding: 30px;
-}
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+export default {
+  name: 'App',
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  components: {
+
+  },
+
+  data: () => ({
+    //
+  }),
+};
+</script>

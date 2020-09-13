@@ -5,7 +5,6 @@
       <v-toolbar-title></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn to="/" text>home</v-btn>
-      <v-btn to="/products" text>Pájaros</v-btn>
       <v-spacer></v-spacer>
     </v-app-bar>
     <v-main>

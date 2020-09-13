@@ -1,19 +1,15 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="dialog" width="600px">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on">
-          Open Dialog
-        </v-btn>
-      </template>
       <v-card>
         <v-card-title>
-          <span class="headline">Use Google's location service?</span>
+          <span class="headline">Descripción</span>
         </v-card-title>
-        <v-card-text>informacion pajarito</v-card-text>
+        <v-img v-if="bird" :src="bird.map.image" max-heigth="500px"></v-img>
+        <v-card-text v-if="bird"> {{ bird.iucn.description ? bird.iucn.description : bird.didyouknow}}</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
+          <v-btn color="teal lighten-3" text @click="closeModal">Cerrar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -22,7 +18,15 @@
 
 <script>
 export default {
-  
+  props: {
+    dialog: Boolean,
+    bird: Object
+  },
+  methods: {
+    closeModal() {
+    this.$emit('close-dialog')
+    }
+  }
 }
 </script>
 

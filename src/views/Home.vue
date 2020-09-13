@@ -4,19 +4,19 @@
     <v-text-field append-icon="mdi-magnify" label="Busca un pajarito" single-line hide-details></v-text-field>
   </v-container>
     <v-row>      
-      <v-col v-for="bird in birds" :key="bird.uid" cols="4">
+      <v-col v-for="bird in birds" :key="bird.uid" cols="3">
         <v-card class="mx-auto">     
-          <v-img :src="bird.images.main" height="200px"></v-img>
+          <v-img :src="bird.images.main" height="300px"></v-img>
           <v-card-title>{{ bird.name.spanish }}</v-card-title>        
           <v-card-subtitle>Nombre cientifico: {{bird.name.latin}}</v-card-subtitle>
           <v-card-actions>
-            <v-btn color="teal darken-1" @click="display(url)">Ver detalles</v-btn>
+            <v-btn color="teal lighten-3" @click="display(bird._links.self)">Ver detalles</v-btn>
             <v-spacer></v-spacer>       
           </v-card-actions>     
         </v-card>
-        <info-bird></info-bird>
       </v-col>
     </v-row>
+    <info-birds :bird='bird' @close-dialog='dialog = false' :dialog="dialog"></info-birds>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
   name: 'Home',
   data() {
     return {
-      dialog: false
+      dialog: false,
     }
   },
   components: {
@@ -38,7 +38,8 @@ export default {
     ...mapActions(['getBirds', 'getBird']),
     display(url) {
       this.getBird(url)
-    }
+      this.dialog = true
+    },
   },
   computed: {
     ...mapState(['birds', 'bird'])
